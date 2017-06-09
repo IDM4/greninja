@@ -312,21 +312,22 @@
                 }   
             }        
         };
-        this.position = function() {
+        this.position = function() { // function to replace frog
             game.Frog.posX = oApp.width / 2;
             game.Frog.posY  = this.app.height - this.app.height / 20;
             safe = false;
             dangerZone = false;
         }
-        this.Life = function() {
+        this.Life = function() { // life loss
             if ( lifes === 0 ) {
                 game.over();
             }
             else {
                 lifes--
+                game.position();
             }
         }
-        this.start = function() {
+        this.start = function() { //start screen
             ctx.textAlign = "center";
             ctx.font = "25px Helvetica";
             ctx.fillStyle = "white";
@@ -336,7 +337,7 @@
             ctx.fillText( "Utilisez les flèches directionnelles", this.app.width / 2, this.app.height / 1.5 );
             ctx.fillText( "pour vous déplacer", this.app.width / 2, this.app.height / 1.35 );
         }
-        this.victoire = function() {
+        this.victoire = function() { // function for winning the game
             this.ended = true;
             window.cancelAnimationFrame( this.animationRequestID );
             ctx.clearRect( 0, 0, this.app.width, this.app.height );
@@ -350,7 +351,7 @@
             ctx.fillText( "Appuyez sur Espace", this.app.width / 2, this.app.height / 2 );
             ctx.fillText( " pour recommencer", this.app.width / 2, this.app.height / 1.75 );
         };
-        this.over = function() {
+        this.over = function() { // function for losing the game
             this.ended = true;
             window.cancelAnimationFrame( this.animationRequestID );
             ctx.clearRect( 0, 0, this.app.width, this.app.height );
@@ -387,10 +388,10 @@
             this.Frog.update();
             //draw objectives
             this.objectives.update();
-            //
-            this.cars.update();
-            //
-            this.logs.update();
+           //draw cars | Non fonctionnel
+            //this.cars.update();
+            //draw logs | non fonctionnel
+            //this.logs.update();
            }
         };
 
@@ -408,7 +409,7 @@
             safe = false;
             this.position();
             this.objectives.table();
-            this.cars.table();
+            //this.cars.table();
             this.animate();
             
         }
